@@ -1,0 +1,27 @@
+---
+name: about-yml-npm
+full_name: .about.yml npm
+type: app
+owner_type: project
+status: active
+stage: discovery
+testable: true
+description: >
+  An npm for the .about.yml project metadata schema and tools
+stack:
+- JavaScript
+licenses:
+  .about.yml:
+    name: CC0
+    url: "https://github.com/18F/about-yml-npm/blob/master/LICENSE.md"
+contact:
+- url: "mailto:michael.bland@gsa.gov"
+  text: Mike Bland
+- url: "mailto:carlo.costino@gsa.gov"
+  text: Carlo Costino
+- url: "https://github.com/18F/about-yml-npm/issues"
+  text: about-yml-npm GitHub Issues
+team:
+- github: mbland
+  role: lead
+- github: arowla

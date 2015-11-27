@@ -1,0 +1,37 @@
+{
+  "name": "about-yml-npm",
+  "version": "0.0.0",
+  "description": ".about.yml project metadata schema and tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test",
+    "lint": "gulp lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/about-yml-npm.git"
+  },
+  "keywords": [
+    "18F",
+    ".about.yml"
+  ],
+  "author": "Mike Bland, Carlo Costino",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/18F/about-yml-npm/issues"
+  },
+  "homepage": "https://github.com/18F/about-yml-npm#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "github": "^0.2.4",
+    "js-yaml": "^3.4.6",
+    "json-schema": "^0.2.2"
+  }
+}
