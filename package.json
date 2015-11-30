@@ -1,6 +1,6 @@
 {
   "name": "about-yml-npm",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": ".about.yml project metadata schema and tools",
   "main": "index.js",
   "scripts": {

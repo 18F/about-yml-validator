@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var jsYaml = require('js-yaml');
 var Validator = require(
-  path.resolve(path.dirname(__dirname), 'lib', 'validator.js'));
+  path.resolve(path.dirname(__dirname), 'index.js'));
 var aboutYmlPath =
     path.resolve(path.dirname(__dirname), '.about.yml');
 var schemaPath =

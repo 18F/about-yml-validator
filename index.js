@@ -3,7 +3,12 @@
 var fs = require('fs');
 var jsonSchema = require('json-schema');
 var jsYaml = require('js-yaml');
-var referenceSchema = require('./draft-04-schema.json');
+var referenceSchema = require('./lib/draft-04-schema.json');
+var packageInfo = require('./package.json');
+
+module.exports.versionString = function() {
+  return packageInfo.name + ' v' + packageInfo.version;
+};
 
 module.exports = Validator;
 
