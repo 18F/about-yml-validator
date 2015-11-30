@@ -1,0 +1,244 @@
+{
+    "title": ".about.yml - .about.yml files",
+    "description": ".about.yml project metadata",
+    "$schema": "http://json-schema.org/draft-04/hyper-schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Short name that acts as the project identifier"
+        },
+        "full_name": {
+            "type": "string",
+            "description": "Full proper name of the project"
+        },
+        "type": {
+            "type": "string",
+            "description": "The type of content in the repo",
+            "enum": ["app", "docs", "policy"]
+        },
+        "owner_type": {
+            "type": "string",
+            "description": "Describes whether a project team, working group/guild, etc. owns the repo",
+            "enum": ["guild", "working-group", "project"]
+        },
+        "parent": {
+            "type": "string",
+            "description": "Name of the main project repo if this is a sub-repo; name of the working group/guild repo if this is a working group/guild subproject"
+        },
+        "stage": {
+            "type": "string",
+            "enum": ["discovery", "alpha", "beta", "live", "sunset", "transfer", "end"],
+            "description": "Maturity stage of the project"
+        },
+        "description": {
+            "type": "string",
+            "description": "Description of the project"
+        },
+        "tags": {
+            "type": "array",
+            "description": "Tags that describe the project or aspects of the project",
+            "items": {"type": "string"},
+            "uniqueItems": true
+        },
+        "testable": {
+            "type": "boolean",
+            "default": false,
+            "description": "Should this repo have automated tests? If so, set to `true`."
+        },
+        "team": {
+            "type": "array",
+            "description": "Team members contributing to the project",
+            "items": {
+                "$ref": "#/definitions/person"
+            },
+            "uniqueItems": true
+        },
+        "partners": {
+            "type": "array",
+            "description": "Partners for whom the project is developed",
+            "items": {"type": "string"},
+            "uniqueItems": true
+        },
+        "users": {
+            "type": "array",
+            "description": "Organizations or individuals who have adopted the project for their own use",
+            "items": {
+                "$ref": "#/definitions/user"
+            },
+            "uniqueItems": true
+        },
+        "milestones": {
+            "type": "array",
+            "description": "Brief descriptions of significant project developments",
+            "items": {"type": "string"},
+            "uniqueItems": true
+        },
+        "stack": {
+            "type": "array",
+            "description": "Technologies used to build the project",
+            "items": {"type": "string"},
+            "uniqueItems": true
+        },
+        "impact": {
+            "type": "string",
+            "description": "Brief description of the project's outcomes"
+        },
+        "services": {
+            "type": "array",
+            "description": "Services used to supply project status information",
+            "items": {
+                "$ref": "#/definitions/service"
+            },
+            "uniqueItems": true
+        },
+        "licenses": {
+            "type": "object",
+            "description": "Licenses that apply to the project and/or its components",
+            "patternProperties": {
+                ".*": {"$ref": "#/definitions/license"}
+            }
+        },
+        "blog": {
+            "type": "array",
+            "description": "Blogs or websites associated with project development",
+            "items": {
+                "type": "string",
+                "format": "uri"
+            },
+            "format": "uri",
+            "uniqueItems": true
+        },
+        "links": {
+            "type": "array",
+            "description": "Links to project artifacts",
+            "items": {
+                "$ref": "#/definitions/link"
+            },
+            "format": "uri",
+            "uniqueItems": true
+        },
+        "contact": {
+            "type": "array",
+            "description": "URIs for points-of-contact",
+            "items": {
+                "$ref": "#/definitions/contact"
+            },
+            "uniqueItems": true
+        }
+    },
+    "required": [
+        "name", "full_name", "stage", "team", "licenses", "owner_type", "testable"
+    ],
+    "definitions": {
+        "person": {
+            "type": "object",
+            "description": "Individual contributor to the project",
+            "properties": {
+                "github": {
+                    "type": "string",
+                    "description": "GitHub user name"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Internal team identifier/user name"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Team member's role; leads should be designated as 'lead'"
+                }
+            }
+        },
+        "user": {
+            "type": "object",
+            "description": "Organizations or individuals who have adopted the project for their own use",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The name of the organization or individual"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "A URL to the user's version of the project"
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "description": "Service used to provide project status",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the service"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Type of the service"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL for detailed information",
+                    "format": "uri"
+                },
+                "badge": {
+                    "type": "string",
+                    "description": "URL for the status badge",
+                    "format": "uri"
+                }
+            }
+        },
+        "license": {
+            "type": "object",
+            "description": "License under which the project (or a component of the project) is offered",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the license from the Software Package Data Exchange (SPDX): https://spdx.org/licenses/"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "URL for the text of the license",
+                    "format": "uri"
+                }
+            }
+        },
+        "link": {
+            "type": "object",
+            "description": "Link to a project artifact",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "URL for the link",
+                    "format": "uri"
+                },
+                "text": {
+                    "type": "string",
+                    "description": "Anchor text for the link"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Type of the link",
+                    "enum": ["api", "process", "related"]
+                }
+            },
+            "required": [
+              "url"
+            ]
+        },
+        "contact": {
+            "type": "object",
+            "description": "Link to a project contact",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "URL for the link",
+                    "format": "uri"
+                },
+                "text": {
+                    "type": "string",
+                    "description": "Anchor text for the link"
+                }
+            }
+        }
+    }
+}
