@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var jsYaml = require('js-yaml');
 var Validator = require(
-  path.resolve(path.dirname(__dirname), 'lib', 'validator.js'));
+  path.resolve(path.dirname(__dirname), 'index.js'));
 var aboutYmlPath =
     path.resolve(path.dirname(__dirname), '.about.yml');
 var schemaPath =
@@ -15,6 +15,7 @@ var schemaPath =
 var chai = require('chai');
 var expect = chai.expect;
 chai.should();
+
 
 function check(done, cb) {
   return function(err) { try { cb(err); done(); } catch (e) { done(e); } };
@@ -25,7 +26,8 @@ describe('validate', function() {
       validator;
 
   beforeEach(function() {
-    validator = new Validator(fs.readFileSync(schemaPath, 'utf8'));
+    var schemaFile = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+    validator = new Validator(schemaFile);
     aboutYmlData = fs.readFileSync(aboutYmlPath, 'utf8');
   });
 
@@ -73,7 +75,8 @@ describe('validateFile', function() {
   var validator;
 
   beforeEach(function() {
-    validator = new Validator(fs.readFileSync(schemaPath, 'utf8'));
+    var schemaFile = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+    validator = new Validator(schemaFile);
   });
 
   it('should pass an error to the callback method if the file read fails',

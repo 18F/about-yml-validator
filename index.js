@@ -3,14 +3,27 @@
 var fs = require('fs');
 var jsonSchema = require('json-schema');
 var jsYaml = require('js-yaml');
-var referenceSchema = require('./draft-04-schema.json');
+var referenceSchema = require('./lib/draft-04-schema.json');
+var aboutSchema = require('./lib/schema.json');
+var packageInfo = require('./package.json');
+
+module.exports.versionString = function() {
+  return packageInfo.name + ' v' + packageInfo.version;
+};
 
 module.exports = Validator;
 
+/**
+ * Creates an instance of Validator.
+ *
+ * @constructor
+ * @this {Validator}
+ * @param {json} schema (optional) - Schema to validate against.
+ */
 function Validator(schema) {
   var result;
 
-  this.schema = JSON.parse(schema);
+  this.schema = schema || aboutSchema;
   delete this.schema.$schema;
 
   result = jsonSchema.validate(this.schema, referenceSchema);
@@ -20,6 +33,12 @@ function Validator(schema) {
   }
 }
 
+/**
+ * Validate against a string.
+ *
+ * @param {string} yamlContents - String of YML to validate
+ * @returns {array} errors - Validation errors, if any. Otherwise returns nothing
+ */
 Validator.prototype.validate = function (yamlContents) {
   var jsonContents,
       result;
@@ -37,6 +56,12 @@ Validator.prototype.validate = function (yamlContents) {
   }
 };
 
+/**
+ * Validate against a file.
+ *
+ * @param {string} filePath - Path to file to validate
+ * @param {fn} callback - To execute after validation with results
+ */
 Validator.prototype.validateFile = function (filePath, callback) {
   var that = this;
 
