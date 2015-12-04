@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var jsonSchema = require('json-schema');
-var jsYaml = require('js-yaml');
+var yamlJs = require('yamljs');
 var referenceSchema = require('./lib/draft-04-schema.json');
 var aboutSchema = require('./lib/schema.json');
 var packageInfo = require('./package.json');
@@ -44,7 +44,7 @@ Validator.prototype.validate = function (yamlContents) {
       result;
 
   try {
-    jsonContents = jsYaml.safeLoad(yamlContents);
+    jsonContents = yamlJs.parse(yamlContents);
   } catch (err) {
     return [err.toString()];
   }
