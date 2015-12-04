@@ -1,5 +1,5 @@
 {
-  "name": "about-yml-npm",
+  "name": "about-yml-validator",
   "version": "0.1.0",
   "description": ".about.yml project metadata schema and tools",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/18F/about-yml-npm.git"
+    "url": "git+https://github.com/18F/about-yml-validator.git"
   },
   "keywords": [
     "18F",
@@ -18,9 +18,9 @@
   "author": "Mike Bland, Carlo Costino",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/18F/about-yml-npm/issues"
+    "url": "https://github.com/18F/about-yml-validator/issues"
   },
-  "homepage": "https://github.com/18F/about-yml-npm#readme",
+  "homepage": "https://github.com/18F/about-yml-validator#readme",
   "devDependencies": {
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
