@@ -42,11 +42,11 @@ describe('validate', function() {
 
   it('should return an array of errors if the YAML fails to parse',
     function() {
-      var yamlContents = 'lyric: watch out boy: she\'ll chew you up!',
+      var yamlContents = 'lyric: "watch out boy: she\'ll chew you up!',
           results = validator.validate(yamlContents);
 
       expect(results).to.not.be.empty;
-      expect(results[0]).to.have.string('YAMLException');
+      expect(results[0]).to.have.string('ParseException');
   });
 
   it('should return nothing if the YAML content is valid', function() {
