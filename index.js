@@ -37,7 +37,8 @@ function Validator(schema) {
  * Validate against a string.
  *
  * @param {string} yamlContents - String of YML to validate
- * @returns {array} errors - Validation errors, if any. Otherwise returns nothing
+ * @returns {array} errors - Validation errors, if any. Otherwise returns
+ *   nothing
  */
 Validator.prototype.validate = function (yamlContents) {
   var jsonContents,
