@@ -5,7 +5,7 @@
 
 var fs = require('fs');
 var path = require('path');
-var jsYaml = require('js-yaml');
+var yamlJs = require('yamljs');
 var Validator = require(
   path.resolve(path.dirname(__dirname), 'index.js'));
 var aboutYmlPath =
@@ -42,11 +42,11 @@ describe('validate', function() {
 
   it('should return an array of errors if the YAML fails to parse',
     function() {
-      var yamlContents = 'lyric: watch out boy: she\'ll chew you up!',
+      var yamlContents = 'lyric: "watch out boy: she\'ll chew you up!',
           results = validator.validate(yamlContents);
 
       expect(results).to.not.be.empty;
-      expect(results[0]).to.have.string('YAMLException');
+      expect(results[0]).to.have.string('ParseException');
   });
 
   it('should return nothing if the YAML content is valid', function() {
@@ -60,9 +60,9 @@ describe('validate', function() {
       var aboutYmlDataBogus,
           results;
 
-      aboutYmlDataBogus = jsYaml.safeLoad(aboutYmlData);
+      aboutYmlDataBogus = yamlJs.parse(aboutYmlData);
       aboutYmlDataBogus.contact = 'bogus';
-      results = validator.validate(jsYaml.safeDump(aboutYmlDataBogus));
+      results = validator.validate(yamlJs.dump(aboutYmlDataBogus));
 
       expect(results).to.eql([{
           'property': 'contact',
@@ -95,7 +95,7 @@ describe('validateFile', function() {
     function(done) {
       validator.validateFile(__filename, check(done, function(err) {
         expect(err).to.not.be.empty;
-        expect(err[0]).to.have.string('YAMLException');
+        expect(err[0]).to.have.string('ParseException');
       }));
   });
 

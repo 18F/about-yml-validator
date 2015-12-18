@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var jsonSchema = require('json-schema');
-var jsYaml = require('js-yaml');
+var yamlJs = require('yamljs');
 var referenceSchema = require('./lib/draft-04-schema.json');
 var aboutSchema = require('./lib/schema.json');
 var packageInfo = require('./package.json');
@@ -37,14 +37,15 @@ function Validator(schema) {
  * Validate against a string.
  *
  * @param {string} yamlContents - String of YML to validate
- * @returns {array} errors - Validation errors, if any. Otherwise returns nothing
+ * @returns {array} errors - Validation errors, if any. Otherwise returns
+ *   nothing
  */
 Validator.prototype.validate = function (yamlContents) {
   var jsonContents,
       result;
 
   try {
-    jsonContents = jsYaml.safeLoad(yamlContents);
+    jsonContents = yamlJs.parse(yamlContents);
   } catch (err) {
     return [err.toString()];
   }
